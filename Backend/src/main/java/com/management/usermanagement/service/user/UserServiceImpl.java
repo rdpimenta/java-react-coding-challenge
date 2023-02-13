@@ -2,21 +2,22 @@ package com.management.usermanagement.service.user;
 
 import com.management.usermanagement.domain.user.SaveUserDto;
 import com.management.usermanagement.domain.user.User;
-import com.management.usermanagement.domain.user.UserDto;
 import com.management.usermanagement.domain.user.UserRepository;
 import com.management.usermanagement.domain.user.exception.DuplicatedUserException;
 import com.management.usermanagement.domain.user.exception.UserNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService{
-    @Autowired
     UserRepository userRepository;
 
-    @Autowired
     PasswordEncoder passwordEncoder;
+
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public User saveUser(SaveUserDto userDto) {
