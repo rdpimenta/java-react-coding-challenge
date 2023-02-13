@@ -2,6 +2,7 @@ package com.management.usermanagement.service.user;
 
 import com.management.usermanagement.domain.user.SaveUserDto;
 import com.management.usermanagement.domain.user.User;
+import com.management.usermanagement.domain.user.UserDto;
 import com.management.usermanagement.domain.user.UserRepository;
 import com.management.usermanagement.domain.user.exception.DuplicatedUserException;
 import com.management.usermanagement.domain.user.exception.UserNotFoundException;

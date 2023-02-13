@@ -46,4 +46,10 @@ public class User {
     public Role getRole() {
         return role;
     }
+
+    public void updateUser(UserDto userDto) {
+        this.firstName = userDto.firstName();
+        this.lastName = userDto.lastName();
+        this.role = userDto.role();
+    }
 }
