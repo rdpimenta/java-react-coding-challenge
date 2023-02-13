@@ -19,11 +19,31 @@ public class User {
 
     private String password;
 
+    public User() {
+
+    }
+
     public User(String email, String firstName, String lastName, Role role, String password) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Role getRole() {
+        return role;
     }
 }

@@ -5,4 +5,5 @@ import com.management.usermanagement.domain.user.User;
 
 public interface UserService {
     User saveUser(SaveUserDto userDto);
+    User getUserByEmail(String email);
 }

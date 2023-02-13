@@ -4,6 +4,7 @@ import com.management.usermanagement.domain.user.SaveUserDto;
 import com.management.usermanagement.domain.user.User;
 import com.management.usermanagement.domain.user.UserRepository;
 import com.management.usermanagement.domain.user.exception.DuplicatedUserException;
+import com.management.usermanagement.domain.user.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,17 @@ public class UserServiceImpl implements UserService{
         );
 
         return userRepository.save(user);
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        User user = userRepository.findByEmail(email);
+
+        if (user == null) {
+            throw new UserNotFoundException();
+        }
+
+        return user;
     }
 
     private boolean emailAlreadyExists(String email) {
