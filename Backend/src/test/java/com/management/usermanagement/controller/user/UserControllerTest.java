@@ -12,7 +12,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
@@ -43,12 +42,21 @@ public class UserControllerTest {
         URI uri = new URI("/user");
         String jsonToSend = """
                 {
-                "email": "jose.renato@email.com",
-                "firstName": "Jose",
-                "lastName": "Renato",
-                "role": "ADMINISTRATOR",
+                "email": "joao.silva@email.com",
+                "firstName": "Joao",
+                "lastName": "Silva",
+                "role": "MONITOR",
                 "password": "aaaaaaaA1$"
                 }""";
+
+        expectedJson = """
+                {
+                "email": "joao.silva@email.com",
+                "firstName": "Joao",
+                "lastName": "Silva",
+                "role": "MONITOR"
+                }
+                """;
 
         mockMvc.perform(MockMvcRequestBuilders.post(uri).content(jsonToSend).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().is(200))
@@ -71,5 +79,31 @@ public class UserControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get(uri))
                 .andExpect(MockMvcResultMatchers.status().is(200))
                 .andExpect(content().json("[" +  expectedJson + "]"));
+    }
+
+    @Test
+    public void shouldEditUserByEmail() throws Exception {
+        URI uri = new URI("/user");
+        String jsonToSend = """
+                {
+                "email": "jose.renato@email.com",
+                "firstName": "Jose",
+                "lastName": "Renato",
+                "role": "MONITOR"
+                }""";
+
+        expectedJson = jsonToSend;
+
+        mockMvc.perform(MockMvcRequestBuilders.put(uri).content(jsonToSend).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(content().json(expectedJson));
+    }
+
+    @Test
+    public void shouldDeleteUserByEmail() throws Exception {
+        URI uri = new URI("/user/jose.renato@email.com");
+
+        mockMvc.perform(MockMvcRequestBuilders.delete(uri))
+                .andExpect(MockMvcResultMatchers.status().is(204));
     }
 }
