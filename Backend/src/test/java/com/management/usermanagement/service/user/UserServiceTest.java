@@ -11,10 +11,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class UserServiceTest {
     @Mock
@@ -25,6 +25,7 @@ public class UserServiceTest {
     private static String userEmail;
     private static User user;
     private static SaveUserDto saveUserDto;
+
     @BeforeAll
     static void setup() {
         userRepository = Mockito.mock(UserRepository.class);

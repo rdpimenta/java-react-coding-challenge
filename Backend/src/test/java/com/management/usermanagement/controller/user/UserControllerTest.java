@@ -78,7 +78,7 @@ public class UserControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders.get(uri))
                 .andExpect(MockMvcResultMatchers.status().is(200))
-                .andExpect(content().json("[" +  expectedJson + "]"));
+                .andExpect(content().json("[" + expectedJson + "]"));
     }
 
     @Test

@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("user")
@@ -76,6 +75,6 @@ public class UserController {
         User user = userService.getUserByEmail(email);
         userRepository.delete(user);
 
-        return  ResponseEntity.noContent().build();
+        return ResponseEntity.noContent().build();
     }
 }
